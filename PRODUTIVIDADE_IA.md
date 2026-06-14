@@ -21,27 +21,27 @@ As conversas com o chat estão anexadas nesse REPO.
 
 ## Entregável
 
-Código modernizado: o trecho final em Java 21, utilizando as ferramentas aprendidas anteriormente no curso.
+### Código modernizado: o trecho final em Java 21, utilizando as ferramentas aprendidas anteriormente no curso.
 
 JAVA21 - Código pessoal construído sem o ChatGPT - demorou 1 dia para construir, corrigir os erros e buscar as atualizações nas libs e docs.
 
 ```
-    List<String> getMotoristasCnhAtiva() {
+List<String> getMotoristasCnhAtiva() {
 
-        List<Motorista> motoristas = getMotoristasDaEmpresa();
-        List<String> habilitados;
+    List<Motorista> motoristas = getMotoristasDaEmpresa();
+    List<String> habilitados;
 
-        Stream<Motorista> motStream = motoristas.stream();
+    Stream<Motorista> motStream = motoristas.stream();
 
-        // Filtrando motoristas com CHN ativa e ordenando por tempo de casa (anos)
-        // usando Comparator anônimo
-        habilitados = motStream.filter(Motorista::isChnAtiva)
-                .sorted(Comparator.comparingInt(Motorista::getAnosEmpresa))
-                .map(Motorista::getNome)
-                .toList();
+    // Filtrando motoristas com CHN ativa e ordenando por tempo de casa (anos)
+    // usando Comparator anônimo
+    habilitados = motStream.filter(Motorista::isChnAtiva)
+            .sorted(Comparator.comparingInt(Motorista::getAnosEmpresa))
+            .map(Motorista::getNome)
+            .toList();
 
-        return habilitados;
-    }
+    return habilitados;
+}
 ```
 
 JAVA21 - Código modernizado pelo ChatGPT - demorou 5 minutos.
@@ -54,6 +54,36 @@ List<Motorista> habilitados = getMotoristasDaEmpresa().stream()
 ```
 
 JAVA21 - Código modernizado pelo ChatGPT com a alteração do Optional de seguro ativo escrito por mim seguindo os direcionamentos do Chat.
+
+```
+List<Motorista> getMotoristasCnhAtiva() {
+
+    List<Motorista> habilitados = getMotoristasDaEmpresa().stream()
+            .filter(Motorista::isChnAtiva)
+            .filter(Motorista::isSeguroPresente)
+            .filter(Motorista::isSeguroAtivo)
+            .sorted(Comparator.comparingInt(Motorista::getAnosEmpresa))
+            .toList();
+
+    return habilitados;
+}
+```
+
+Código com Optional compilando
+<img width="1917" height="1077" alt="image" src="https://github.com/user-attachments/assets/817fb0ea-e8b1-437a-8627-c63217de4699" />
+
+### Relato do aprendizado: uma breve explicação (de 3 a 5 linhas) sobre o insight mais importante que a IA proporcionou durante a explicação do porquê da mudança.
+
+Normalmente eu já utilizo a IA como um professor quando estou desenvolvendo estudos autodidatas. Umas das principais difereças para mim que impactou o estudo solo é o fato de correção de exercícios e aexplicação compilado do porque do erro. Quando estudo sozinha, às vezes o professor passa apenas o exercício e a resposta final, nem a resposta final, às vezes, e é ainda que a IA entra para mim. Nesse exercício, utilizei o ChatGPT com quem estou familiarizada, mas em outros momentos, uso o Copilot conectado diretamente ao Github e VScode. Gosto porque consigo compreender os conceitos e a solução de uma maneira mais rápida e aprofundada. Normalmente, quando eu procurava pelo Google (antes de ter a função de IA nas respostas) eu achava diversas possíveis soluções que podiam funcionar ou não, dependendo de toda a configuração e versionamento das libs utilizadas. Gastava horas e nem sabia se funcionaria e, quando funcionava, ficava aquela pergunta - Ok, funcionou. Mas, por que funcionou? Sinto que isso não ocorre mais e consigo fazer em muito menos tempo, definindo exatamente as configurações do meu workspace, a busca e compreensão se tornam bem mais rápidas.
+
+### Prompt de desafio: a captura de tela ou o texto do prompt que você usou para desafiar a IA.
+
+<img width="1055" height="766" alt="image" src="https://github.com/user-attachments/assets/354dd309-5fe7-4a60-a235-a57d2b1056a8" />
+
+<img width="1037" height="812" alt="image" src="https://github.com/user-attachments/assets/99d16115-2528-4102-a986-d73e79ff1d6f" />
+
+<img width="1042" height="832" alt="image" src="https://github.com/user-attachments/assets/8ebdeb2b-1003-46d4-8164-cdb066e532cb" />
+
 
 
 
